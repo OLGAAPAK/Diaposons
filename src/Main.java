@@ -4,27 +4,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int begin;
-        int end;
-        int i;
-        while(true) {
-            if (scanner.hasNext("stop")) {
-                System.exit(0);
-            }
-            begin = scanner.nextInt();
-            end = scanner.nextInt();
-            if (begin > end) {
-                System.out.println("Fault input");
-                continue;
-            }
-            i = begin;
-            ArrayList<Integer> arrayList = new ArrayList<>();
-            while (i < end) {
-                arrayList.add(i);
-                i++;
-            }
-            System.out.println(arrayList.size());
+        Diapason[] diapason = new Diapason[3];
+        for (int i = 0; i < diapason.length; i++){
+        diapason[i] = new Diapason(scanner.nextInt(), scanner.nextInt());
+        while (diapason[i].checkDiapasone() == false){
+            System.out.println("Incorrect input");
+            diapason[i].setBegin(scanner.nextInt());
+            diapason[i].setEnd(scanner.nextInt());
         }
-
+        diapason[i].createArray();
+            System.out.println(diapason[i].checkDiapasone());
+        }
+        for (int i = 0; i < diapason.length; i++) {
+            System.out.println(diapason[i].diapasonSize());
+        }
     }
 }
